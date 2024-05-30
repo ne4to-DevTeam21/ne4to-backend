@@ -1,10 +1,17 @@
 package com.example.nechto.dto;
 
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 import static java.util.UUID.randomUUID;
 
+@Getter
+@Setter
 public class User {
 
+    @Setter(AccessLevel.NONE)
     private String id;
     private String login;
     private String name;
@@ -17,42 +24,6 @@ public class User {
         this.name = name;
         this.password = password;
         this.email = phone;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
 }
