@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @GetMapping("/hello")
-    public String hello(@RequestParam(required = false) String name) {
-        return "Hello, " + name;
+    @GetMapping("/nechto_scoring")
+    public String hello() {
+        return "Hello, world";
     }
 }
