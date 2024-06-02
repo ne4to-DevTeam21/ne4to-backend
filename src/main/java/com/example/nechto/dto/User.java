@@ -16,14 +16,16 @@ public class User {
     private String login;
     private String name;
     private String password;
+    private String confirmPassword;
     private String email;
 
-    public User(String login, String name, String password, String phone) {
+    public User(String login, String name, String password, String confirmPassword, String email) {
         id = randomUUID().toString();
         this.login = login;
         this.name = name;
         this.password = password;
-        this.email = phone;
+        this.confirmPassword = confirmPassword;
+        this.email = email;
     }
 
 }
