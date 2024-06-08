@@ -1,0 +1,22 @@
+###
+GET http://localhost:8080/eto_nechto
+
+###
+GET http://localhost:8080/eto_nechto/login
+content-type: application/json
+
+###
+POST http://localhost:8080/eto_nechto/login
+content-type: application/json
+
+###
+GET http://localhost:8080/eto_nechto/registration
+content-type: application/json
+
+###
+POST http://localhost:8080/eto_nechto/registration
+Content-Type: application/json
+
+###
+GET http://localhost:8080/h2-console
+Content-Type: application/json
