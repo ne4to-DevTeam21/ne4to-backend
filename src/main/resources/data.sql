@@ -1,0 +1,2 @@
+INSERT INTO users (id, login, name, password, email) VALUES (1, 'nechto', 'unknown', '12345', 'nechto@mail.ru');
+INSERT INTO users (id, login, name, password, email) VALUES (2, 'infected', 'known', 'qwerty', 'infected@mail.ru');
