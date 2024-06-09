@@ -12,5 +12,5 @@ public class PlatformPage {
     private String role;
     private Rating rating;
     private List<String> options;
-    
+
 }
