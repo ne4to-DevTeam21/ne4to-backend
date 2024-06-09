@@ -1,5 +1,6 @@
 package com.example.nechto.controller;
 
+import com.example.nechto.dto.UserPage;
 import com.example.nechto.services.AuthorizationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ public class AuthorizationControllerImpl implements AuthorizationController {
     }
 
     @Override
-    public ResponseEntity<String> login(String str) {
+    public ResponseEntity<UserPage> login(String str) {
         return null;
     }
 }

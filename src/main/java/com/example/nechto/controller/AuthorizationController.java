@@ -1,5 +1,6 @@
 package com.example.nechto.controller;
 
+import com.example.nechto.dto.UserPage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,6 @@ public interface AuthorizationController {
     String login();
 
     @PostMapping("eto_nechto/login")
-    ResponseEntity<String> login(String str);
+    ResponseEntity<UserPage> login(String str);
 
 }
