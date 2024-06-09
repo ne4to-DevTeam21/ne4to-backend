@@ -1,15 +1,13 @@
 package com.example.nechto.services;
 
 import com.example.nechto.dto.User;
+import com.example.nechto.exception.ResourceNotFoundException;
 import com.example.nechto.mapper.UserMapper;
 import com.example.nechto.model.UserEntity;
 import com.example.nechto.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.beans.Transient;
 import java.util.List;
 
 @Service
@@ -23,8 +21,8 @@ public class UserService {
 //    @Override
     @Transactional
     public List<User> findAll() {
-        var list = repository.findAll();
-        var result = list.stream()
+        List<UserEntity> list = repository.findAll();
+        List<User> result = list.stream()
                 .map(mapper::map)
                 .toList();
         return result;
@@ -59,15 +57,24 @@ public class UserService {
         return save(user);
     }
 
+    public User findById(Long id) {
+        UserEntity entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c id " + id + " не найден"));
+        User dto = mapper.map(entity);
+        return dto;
+    }
+
     /**
      * Получение пользователя по нику пользователя
      *
      * @return пользователь
      */
 //    @Override
-    public UserEntity findByLogin(String login) {
-        return repository.findByLogin(login)
-                .orElseThrow(() -> new RuntimeException("Пользователь c таким логином не найден"));
+    public User findByLogin(String login) {
+        UserEntity entity = repository.findByLogin(login)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + login + " не найден"));
+        User dto = mapper.map(entity);
+        return dto;
     }
 
     /**
@@ -76,14 +83,18 @@ public class UserService {
      * @return пользователь
      */
 //    @Override
-    public UserEntity findByName(String name) {
-        return repository.findByName(name)
-                .orElseThrow(() -> new RuntimeException("Пользователь c таким именем не найден"));
+    public User findByName(String name) {
+        UserEntity entity = repository.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + name + " не найден"));
+        User dto = mapper.map(entity);
+        return dto;
     }
 
-    public UserEntity findByEmail(String email) {
-        return repository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Пользователь c таким именем не найден"));
+    public User findByEmail(String email) {
+        UserEntity entity = repository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + email + " не найден"));
+        User dto = mapper.map(entity);
+        return dto;
     }
 
 //    @Override
@@ -94,6 +105,15 @@ public class UserService {
 //    @Override
     public UserEntity editUser(UserEntity userEntity) {
         return repository.saveAndFlush(userEntity);
+    }
+
+    public Boolean checkPassword(String email, String password) {
+        UserEntity entity = repository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + email + " не найден"));
+        if (entity != null && entity.getPassword().equals(password)) {
+            return true;
+        }
+        return  false;
     }
 
 }

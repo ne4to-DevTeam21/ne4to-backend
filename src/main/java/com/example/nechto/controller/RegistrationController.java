@@ -1,6 +1,7 @@
 package com.example.nechto.controller;
 
 import com.example.nechto.dto.User;
+import com.example.nechto.dto.UserPage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,7 @@ public interface RegistrationController {
     String register();
 
     @PostMapping("/eto_nechto/registration")
-    ResponseEntity<String> register(@RequestBody User user);
+    ResponseEntity<UserPage> register(@RequestBody User user);
 
 
 

@@ -2,6 +2,9 @@
 GET http://localhost:8080/eto_nechto/users
 
 ###
+GET http://localhost:8080/eto_nechto/users/2
+
+###
 GET http://localhost:8080/eto_nechto/login
 content-type: application/json
 
