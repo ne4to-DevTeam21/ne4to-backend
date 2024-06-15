@@ -3,6 +3,7 @@ package com.example.nechto.services;
 import com.example.nechto.dto.AuthorizationRequest;
 import com.example.nechto.dto.AuthorizationResponse;
 import com.example.nechto.dto.User;
+import com.example.nechto.exception.AuthorizationException;
 import com.example.nechto.exception.ResourceNotFoundException;
 import com.example.nechto.mapper.UserMapper;
 import com.example.nechto.model.UserEntity;
@@ -38,17 +39,16 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 //                request.getPassword()
 //        ));
 
-        String jwt = null;
-
-        if (userService.checkLoginPassword(request.getEmail(), request.getPassword())) {
-            jwt = "this_your_jwt_token";
-        } else {
-            throw new ResourceNotFoundException("Неправильный логин или пароль");
+        String accessToken = null;
+        String refreshToken = null;
+        if (userService.checkLoginPassword(request.getLogin(), request.getPassword())) {
+            accessToken = "your_access_token";
+            refreshToken = "your_refresh_token";
         }
 
 //        var jwt = jwtService.generateToken(user);
 
-        return new AuthorizationResponse(jwt);
+        return new AuthorizationResponse(accessToken, refreshToken);
     }
 
 }

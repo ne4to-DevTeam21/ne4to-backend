@@ -5,20 +5,17 @@ import com.example.nechto.dto.AuthorizationResponse;
 import com.example.nechto.dto.UserPage;
 import com.example.nechto.services.AuthorizationService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class AuthorizationControllerImpl implements AuthorizationController {
 
     private final AuthorizationService authorizationService;
-
-    public AuthorizationControllerImpl(AuthorizationService authorizationService) {
-        this.authorizationService = authorizationService;
-    }
-
 
 //    @Override
 //    public String login() {
@@ -26,7 +23,7 @@ public class AuthorizationControllerImpl implements AuthorizationController {
 //    }
 
     @Override
-    public AuthorizationResponse signIn(@RequestBody @Valid AuthorizationRequest request) {
+    public AuthorizationResponse signIn(AuthorizationRequest request) {
         return authorizationService.signIn(request);
     }
 
@@ -34,4 +31,5 @@ public class AuthorizationControllerImpl implements AuthorizationController {
 //    public ResponseEntity<UserPage> login(String str) {
 //        return null;
 //    }
+
 }

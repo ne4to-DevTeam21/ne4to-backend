@@ -1,6 +1,7 @@
 package com.example.nechto.services;
 
 import com.example.nechto.dto.User;
+import com.example.nechto.exception.AuthorizationException;
 import com.example.nechto.exception.ResourceNotFoundException;
 import com.example.nechto.mapper.UserMapper;
 import com.example.nechto.model.UserEntity;
@@ -44,7 +45,7 @@ public class UserService {
      * @return созданный пользователь
      */
 //    @Override
-    public UserEntity create(UserEntity user) {
+    public UserEntity create(User user) {
         if (repository.existsByLogin(user.getLogin())) {
             // Заменить на свои исключения
             throw new RuntimeException("Пользователь с таким логином уже существует");
@@ -54,7 +55,9 @@ public class UserService {
             throw new RuntimeException("Пользователь с таким email уже существует");
         }
 
-        return save(user);
+        UserEntity entity = mapper.map(user);
+
+        return save(entity);
     }
 
     public User findById(Long id) {
@@ -107,14 +110,23 @@ public class UserService {
         return repository.saveAndFlush(userEntity);
     }
 
-    public Boolean checkLoginPassword(String email, String password) {
-        UserEntity entity = repository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("Неправильный логин или пароль"));
+    public Boolean checkLoginPassword(String login, String password) {
+        //TODO edit to Predicate<T> or(Predicate<? super T> other);
+
+        UserEntity entity;
+        if (login.contains("@")) {
+            entity = repository.findByEmail(login)
+                    .orElseThrow(() -> new AuthorizationException("Неправильный логин или пароль"));
+        } else {
+            entity = repository.findByLogin(login)
+                    .orElseThrow(() -> new AuthorizationException("Неправильный логин или пароль"));
+        }
+
 
         if (entity.getPassword().equals(password)) {
             return true;
         } else {
-            throw new ResourceNotFoundException("Неправильный логин или пароль");
+            throw new AuthorizationException("Неправильный логин или пароль");
         }
     }
 

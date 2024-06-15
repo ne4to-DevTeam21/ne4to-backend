@@ -6,10 +6,7 @@ import com.example.nechto.dto.UserPage;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 public interface AuthorizationController {
 
@@ -19,8 +16,11 @@ public interface AuthorizationController {
 //    @PostMapping("eto_nechto")
 //    ResponseEntity<UserPage> login(String str);
 
-    @PostMapping("/eto_nechto")
+    @PostMapping("/eto_nechto/login")
     @ResponseStatus(HttpStatus.OK)
-    AuthorizationResponse signIn(@RequestBody @Valid AuthorizationRequest request);
+//    @CrossOrigin(origins = {"http://localhost:8080", "http://localhost:5173"})
+    //TODO consider annotations @RequestBody @Valid
+//    AuthorizationResponse signIn(@RequestBody @Valid AuthorizationRequest request);
+    AuthorizationResponse signIn(@RequestBody AuthorizationRequest request);
 
 }

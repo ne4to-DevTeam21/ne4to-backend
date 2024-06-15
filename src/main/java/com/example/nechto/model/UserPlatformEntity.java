@@ -1,7 +1,5 @@
 package com.example.nechto.model;
 
-import com.example.nechto.dto.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -20,25 +18,32 @@ import java.time.LocalDate;
 @ToString(includeFieldNames = true, onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "platforms")
-public class PlatformEntity implements BaseEntity {
+@Table(name = "user_platforms")
+public class UserPlatformEntity implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "platform_id_seq")
-    @SequenceGenerator(name = "platform_id_seq", sequenceName = "platform_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "user_platform_id_seq", sequenceName = "user_platform_id_seq", allocationSize = 1)
     @EqualsAndHashCode.Include
     @ToString.Include
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     @NotBlank
-    @ToString.Include
-    private String name;
-
-    @Column(name = "super_user", nullable = false)
-    @NotBlank
+    @EqualsAndHashCode.Include
     @ToString.Include
     private Long userId;
+
+    @Column(nullable = false)
+    @NotBlank
+    @EqualsAndHashCode.Include
+    @ToString.Include
+    private Long platformId;
+
+    @Column(name = "user_status", nullable = false)
+    @NotBlank
+    @ToString.Include
+    private Long statusCode;
 
     @CreatedDate
     private LocalDate createdAt;
