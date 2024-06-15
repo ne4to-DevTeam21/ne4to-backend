@@ -40,8 +40,10 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
         String jwt = null;
 
-        if (userService.checkPassword(request.getEmail(), request.getPassword())) {
+        if (userService.checkLoginPassword(request.getEmail(), request.getPassword())) {
             jwt = "this_your_jwt_token";
+        } else {
+            throw new ResourceNotFoundException("Неправильный логин или пароль");
         }
 
 //        var jwt = jwtService.generateToken(user);

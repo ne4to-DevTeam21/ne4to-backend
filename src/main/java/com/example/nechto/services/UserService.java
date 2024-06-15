@@ -72,7 +72,7 @@ public class UserService {
 //    @Override
     public User findByLogin(String login) {
         UserEntity entity = repository.findByLogin(login)
-                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + login + " не найден"));
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c логином " + login + " не найден"));
         User dto = mapper.map(entity);
         return dto;
     }
@@ -85,14 +85,14 @@ public class UserService {
 //    @Override
     public User findByName(String name) {
         UserEntity entity = repository.findByName(name)
-                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + name + " не найден"));
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c именем " + name + " не найден"));
         User dto = mapper.map(entity);
         return dto;
     }
 
     public User findByEmail(String email) {
         UserEntity entity = repository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + email + " не найден"));
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c email " + email + " не найден"));
         User dto = mapper.map(entity);
         return dto;
     }
@@ -107,13 +107,15 @@ public class UserService {
         return repository.saveAndFlush(userEntity);
     }
 
-    public Boolean checkPassword(String email, String password) {
+    public Boolean checkLoginPassword(String email, String password) {
         UserEntity entity = repository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("Пользователь c " + email + " не найден"));
-        if (entity != null && entity.getPassword().equals(password)) {
+                .orElseThrow(() -> new ResourceNotFoundException("Неправильный логин или пароль"));
+
+        if (entity.getPassword().equals(password)) {
             return true;
+        } else {
+            throw new ResourceNotFoundException("Неправильный логин или пароль");
         }
-        return  false;
     }
 
 }
