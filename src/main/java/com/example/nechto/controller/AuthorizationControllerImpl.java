@@ -20,18 +20,18 @@ public class AuthorizationControllerImpl implements AuthorizationController {
     }
 
 
-    @Override
-    public String login() {
-        return authorizationService.authorization();
-    }
+//    @Override
+//    public String login() {
+//        return authorizationService.authorization();
+//    }
 
     @Override
     public AuthorizationResponse signIn(@RequestBody @Valid AuthorizationRequest request) {
         return authorizationService.signIn(request);
     }
 
-    @Override
-    public ResponseEntity<UserPage> login(String str) {
-        return null;
-    }
+//    @Override
+//    public ResponseEntity<UserPage> login(String str) {
+//        return null;
+//    }
 }

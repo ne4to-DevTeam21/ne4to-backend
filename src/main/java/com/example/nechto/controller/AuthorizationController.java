@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface AuthorizationController {
 
-    @GetMapping("eto_nechto")
-    String login();
+//    @GetMapping("eto_nechto")
+//    String login();
 
-    @PostMapping("eto_nechto")
-    ResponseEntity<UserPage> login(String str);
+//    @PostMapping("eto_nechto")
+//    ResponseEntity<UserPage> login(String str);
 
-    @PostMapping("eto_nechto")
+    @PostMapping("/eto_nechto")
     AuthorizationResponse signIn(@RequestBody @Valid AuthorizationRequest request);
 
 }
