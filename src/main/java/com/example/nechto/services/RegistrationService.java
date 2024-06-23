@@ -1,14 +1,11 @@
 package com.example.nechto.services;
 
-import org.springframework.stereotype.Service;
+import com.example.nechto.dto.NewUser;
 
 
 public interface RegistrationService {
-    boolean checkLogin();
-    boolean checkPhone();
-    String addNewUser();
-    void joinToThePlatform(String platformName, String userPlatformNick, int personalCode);
+
+    String addNewUser(NewUser user);
     String registrationService();
 
-
-};
+}
