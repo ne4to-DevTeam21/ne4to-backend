@@ -1,27 +1,20 @@
 package com.example.nechto.controller;
 
-import com.example.nechto.dto.UserPage;
+import com.example.nechto.dto.AuthorizationRequest;
+import com.example.nechto.dto.AuthorizationResponse;
 import com.example.nechto.services.AuthorizationService;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class AuthorizationControllerImpl implements AuthorizationController {
 
     private final AuthorizationService authorizationService;
 
-    public AuthorizationControllerImpl(AuthorizationService authorizationService) {
-        this.authorizationService = authorizationService;
-    }
-
-
     @Override
-    public String login() {
-        return authorizationService.authorization();
+    public AuthorizationResponse signIn(AuthorizationRequest request) {
+        return authorizationService.signIn(request);
     }
 
-    @Override
-    public ResponseEntity<UserPage> login(String str) {
-        return null;
-    }
 }
