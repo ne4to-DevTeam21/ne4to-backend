@@ -64,7 +64,6 @@ public class JwtServiceImpl implements JwtService {
         return userJwt;
     }
 
-
     /**
      * Получение ключа для подписи токена
      *
@@ -74,6 +73,7 @@ public class JwtServiceImpl implements JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(jwtKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }
 
 
