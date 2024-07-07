@@ -10,8 +10,6 @@ public interface AuthorizationController {
 
     @PostMapping("/eto_nechto/login")
     @ResponseStatus(HttpStatus.OK)
-        //TODO consider annotations @RequestBody @Valid @CrossOrigin
-//    @CrossOrigin(origins = {"http://localhost:8090", "http://localhost:5173"})
     AuthorizationResponse signIn(@RequestBody @Valid AuthorizationRequest request);
 
 }

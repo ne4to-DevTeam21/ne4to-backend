@@ -32,7 +32,7 @@ public class UserPlatformEntity implements BaseEntity {
     @NotBlank
     @EqualsAndHashCode.Include
     @ToString.Include
-    private Long userId;
+    private String userId;
 
     @Column(nullable = false)
     @NotBlank

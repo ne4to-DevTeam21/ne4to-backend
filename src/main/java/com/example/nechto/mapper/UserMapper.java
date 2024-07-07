@@ -11,10 +11,10 @@ import org.mapstruct.*;
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public abstract class UserMapper {
-    @Mapping(target = "id", source = "userId")
+
     public abstract UserEntity map(User dto);
 
-    @Mapping(source = "id", target = "userId")
+
     public abstract User map(UserEntity model);
 
 }

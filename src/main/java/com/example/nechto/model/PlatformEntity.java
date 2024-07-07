@@ -36,7 +36,7 @@ public class PlatformEntity implements BaseEntity {
     @Column(name = "super_user", nullable = false)
     @NotBlank
     @ToString.Include
-    private Long userId;
+    private String userId;
 
     @CreatedDate
     private LocalDate createdAt;

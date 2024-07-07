@@ -2,9 +2,11 @@ package com.example.nechto.services;
 
 import com.example.nechto.dto.AuthorizationRequest;
 import com.example.nechto.dto.AuthorizationResponse;
+import com.example.nechto.dto.UserPage;
 import com.example.nechto.exception.AuthorizationException;
 import com.example.nechto.model.UserEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthorizationServiceImpl implements AuthorizationService {
 
-    private final UserService userService;
-    private final UserPlatformService userPlatformService;
+    private final UserServiceImpl userService;
+    private final UserPlatformServiceImpl userPlatformService;
 
     /**
      * Аутентификация пользователя
@@ -39,7 +41,12 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         String name = entity.getName();
         List<String> platforms = userPlatformService.getUserPlatforms(entity.getId());
 
-        return new AuthorizationResponse(accessToken, refreshToken, login, name, platforms);
+        UserPage userPage = new UserPage();
+        userPage.setLogin(login);
+        userPage.setName(name);
+        userPage.setPlatforms(platforms);
+
+        return new AuthorizationResponse(accessToken, refreshToken, userPage);
     }
 
 }

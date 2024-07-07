@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserPlatformRepository extends JpaRepository<UserPlatformEntity, Long> {
 
-    List<UserPlatformEntity> findAllByUserId(Long userId);
+    List<UserPlatformEntity> findAllByUserId(String userId);
     List<UserPlatformEntity> findAllByPlatformId(Long platformId);
 
 }

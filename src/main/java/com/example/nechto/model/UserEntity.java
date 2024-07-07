@@ -24,11 +24,9 @@ import java.time.LocalDate;
 public class UserEntity implements BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
-    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
     @EqualsAndHashCode.Include
     @ToString.Include
-    private Long id;
+    private String id;
 
     @Column(unique = true, nullable = false)
     @NotBlank

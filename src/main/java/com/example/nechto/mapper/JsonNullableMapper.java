@@ -27,4 +27,5 @@ public abstract class JsonNullableMapper {
     public <T> boolean isPresent(JsonNullable<T> nullable) {
         return nullable != null && nullable.isPresent();
     }
+
 }
