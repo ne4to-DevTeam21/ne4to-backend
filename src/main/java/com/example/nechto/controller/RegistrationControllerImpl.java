@@ -1,6 +1,6 @@
 package com.example.nechto.controller;
 
-import com.example.nechto.dto.User;
+import com.example.nechto.dto.NewUser;
 import com.example.nechto.dto.UserPage;
 import com.example.nechto.services.RegistrationService;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +17,12 @@ public class RegistrationControllerImpl implements RegistrationController {
 
     @Override
     public String register() {
+
         return registrationService.registrationService();
     }
 
     @Override
-    public ResponseEntity<UserPage> register(User user) {
-        registrationService.addNewUser();
+    public ResponseEntity<UserPage> register(NewUser user) {
         return null;
     }
 }

@@ -1,26 +1,26 @@
 package com.example.nechto.dto;
 
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-import static java.util.UUID.randomUUID;
+import java.io.Serializable;
 
 @Getter
 @Setter
-public class User {
+public class NewUser implements Serializable {
 
-    @Setter(AccessLevel.NONE)
-    private String id;
     private String login;
     private String name;
     private String password;
     private String confirmPassword;
     private String email;
 
-    public User(String login, String name, String password, String confirmPassword, String email) {
-        id = randomUUID().toString();
+    public NewUser(String login,
+                   String name,
+                   String password,
+                   String confirmPassword,
+                   String email) {
         this.login = login;
         this.name = name;
         this.password = password;
