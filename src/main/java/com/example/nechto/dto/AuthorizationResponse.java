@@ -13,6 +13,6 @@ public class AuthorizationResponse {
 
     private String accessToken;
     private String refreshToken;
-    UserPage userPage;
+    private UserPage userPage;
 
 }
