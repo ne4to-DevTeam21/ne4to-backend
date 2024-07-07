@@ -3,7 +3,10 @@ server.port: 8090
 spring:
   application:
     name: nechto
-
+  security:
+    user:
+      name: user
+      password: 12345
   datasource:
 #    url: jdbc:h2:mem:test
     url: jdbc:h2:file:./data/test

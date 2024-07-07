@@ -41,11 +41,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         String name = entity.getName();
         List<String> platforms = userPlatformService.getUserPlatforms(entity.getId());
 
-        UserPage userPage = new UserPage();
-        userPage.setLogin(login);
-        userPage.setName(name);
-        userPage.setPlatforms(platforms);
-
+        UserPage userPage = new UserPage(login, name, platforms);
         return new AuthorizationResponse(accessToken, refreshToken, userPage);
     }
 
